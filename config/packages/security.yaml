@@ -15,9 +15,19 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
-            lazy: true
+            anonymous: lazy
             provider: app_user_provider
+
+#            guard:
+#                authenticators:
+#                    - App\Security\LoginFormAuthenticator
+
+#            logout:
+#                path: app_logout
+
+#            remember_me:
+#                secret: '%kernel.secret%'
+#                lifetime: 259200
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
