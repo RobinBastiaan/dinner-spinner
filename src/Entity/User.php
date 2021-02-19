@@ -108,7 +108,7 @@ class User implements UserInterface
      */
     public function getSalt(): ?string
     {
-        return null;
+        return null; // not needed when using bcrypt or argon
     }
 
     /**

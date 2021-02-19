@@ -5,35 +5,39 @@
 {% block stylesheets %}
     {{ parent() }}
 
-     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
 {% block body %}
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <article class="form-signin">
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+        {% if app.user %}
+            <div class="alert alert-success">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
 
-    <form class="form-signin" method="post">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label class="sr-only" for="inputEmail">Email</label>
-        <input id="inputEmail" class="form-control" type="email" value="{{ email }}" name="email" required autofocus>
-        <label class="sr-only" for="inputPassword">Password</label>
-        <input id="inputPassword" class="form-control" type="password" name="password" required>
+        <form method="post">
+            <label class="sr-only" for="inputEmail">Email</label>
+            <input id="inputEmail" class="form-control" type="email" value="{{ email }}" name="email" required autofocus>
+            <label class="sr-only" for="inputPassword">Password</label>
+            <input id="inputPassword" class="form-control" type="password" name="password" required>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me" value="remember-me"> Remember me
-            </label>
-        </div>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
 
-        <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
-    </form>
+            <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+        </form>
+    </article>
 {% endblock %}
