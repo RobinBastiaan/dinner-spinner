@@ -39,6 +39,21 @@ class User implements UserInterface
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $cost;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $duration;
+
+    /**
+     * @ORM\Column(type="simple_array", nullable=true)
+     */
+    private $exclude = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -128,6 +143,42 @@ class User implements UserInterface
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCost(): ?int
+    {
+        return $this->cost;
+    }
+
+    public function setCost(?int $cost): self
+    {
+        $this->cost = $cost;
+
+        return $this;
+    }
+
+    public function getDuration(): ?int
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?int $duration): self
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getExclude(): ?array
+    {
+        return $this->exclude;
+    }
+
+    public function setExclude(?array $exclude): self
+    {
+        $this->exclude = $exclude;
 
         return $this;
     }
