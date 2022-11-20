@@ -46,7 +46,11 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/flex": true,
+            "ergebnis/composer-normalize": true
+        }
     },
     "extra": {
         "symfony": {
